@@ -1,0 +1,23 @@
+ <!--News API-->
+ <div class="container" id="container">
+  <div class="container_notice" id="notice_1" [class.active]="state">
+    <div class="image">
+      <img [src]="this.list_news[this.cont_news]['image']">
+    </div>
+    <div class="container_2">
+      <div class="title"><h2>{{this.list_news[this.cont_news]['title']}}</h2></div>
+      <div class="message"><p>{{this.list_news[this.cont_news]['description']}}</p></div>
+    </div>
+  </div>
+</div>
+<div class="container" id="container">
+  <div class="container_notice" id="notice_2" [class.active]="!state">
+    <div class="image">
+      <img [src]="this.list_news[this.cont_news]['image']">
+    </div>
+    <div class="container_2">
+      <div class="title"><h2>{{this.list_news[this.cont_news]['title']}}</h2></div>
+      <div class="message"><p>{{this.list_news[this.cont_news]['description']}}</p></div>
+    </div>
+  </div>
+</div>
