@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { News } from 'src/app/model/news/news-model';
+import { NewsApi } from 'src/app/model/newsApi/newsApi-model';
 
 
 @Component({
@@ -9,14 +9,14 @@ import { News } from 'src/app/model/news/news-model';
 })
 export class NewsComponent implements OnInit {
 
-  list_news: Array<News> = []; // esta variable contiene todas las noticias de la petición
+  list_news: Array<NewsApi> = []; // esta variable contiene todas las noticias de la petición
   state: boolean = true; // variable que alterna los paneles de las noticias
   indexNew: number = 0;
-  new1: News = { title: '', description: '', image: '' };
-  new2: News = { title: '', description: '', image: '' };
+  new1: NewsApi = { title: '', description: '', urlToImage: '' };
+  new2: NewsApi = { title: '', description: '', urlToImage: '' };
 
 
-  @Input() set list_News(item: Array<News>){ // se reciben nuevas noticias desde app.components
+  @Input() set list_News(item: Array<NewsApi>){ // se reciben nuevas noticias desde app.components
     this.list_news = item;
     this.new1 = this.list_news[this.indexNew]
   }

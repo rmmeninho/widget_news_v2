@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { News } from './model/news/news-model';
+import { NewsApi } from './model/newsApi/newsApi-model';
 import { NewsService } from './services/news.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { NewsService } from './services/news.service';
 export class AppComponent {
   title = 'widget_news_v2';
 
-  list_news: Array<News> = [];
+  list_news: Array<NewsApi> = [];
 
   constructor(private newsService: NewsService) {
 
