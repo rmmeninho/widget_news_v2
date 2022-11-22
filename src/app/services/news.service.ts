@@ -28,8 +28,7 @@ export class NewsService {
     console.log(date);
     let day = date.substring(0,10);
     console.log("day: "+ day);
-    //this.http.get<any>(`https://newsapi.org/v2/everything?q=galicia&from=${day}&sortBy=publishedAt&pagesize=${limit}&apiKey=0dc3db21fb1c4a7daf0a7a6fc6247c2b`)
-      this.http.get<any>('/assets/noticias.json')
+    this.http.get<any>(`https://newsapi.org/v2/everything?q=galicia&from=${day}&sortBy=publishedAt&pagesize=${limit}&apiKey=0dc3db21fb1c4a7daf0a7a6fc6247c2b`)
       .pipe(
         map((result) =>{
           console.log(result);
@@ -44,7 +43,6 @@ export class NewsService {
       )
       .subscribe((data: Array<News>) =>{
         this.list_news = data;
-        console.log(this.list_news);
         this.news.next(this.list_news);
       }
     )

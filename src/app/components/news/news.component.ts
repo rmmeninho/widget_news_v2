@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { count } from 'rxjs';
 import { News } from 'src/app/model/news/news-model';
 
 
@@ -12,42 +11,38 @@ export class NewsComponent implements OnInit {
 
   list_news: Array<News> = []; // esta variable contiene todas las noticias de la petición
   state: boolean = true; // variable que alterna los paneles de las noticias
-  flow_news: number[] = [0,1];
-  actualize_news: boolean = false; // bandera que es true cuando hay noticias nuevas
-  count_news: number = 1;
+  indexNew: number = 0;
+  new1: News = { title: '', description: '', image: '' };
+  new2: News = { title: '', description: '', image: '' };
+
 
   @Input() set list_News(item: Array<News>){ // se reciben nuevas noticias desde app.components
-    this.actualize_news = true;
     this.list_news = item;
-
-    if(this.actualize_news && this.count_news > 1){ // condición para saltar el start de la app, sino la 1º noticia sale duplicada
-      this.count_news = this.list_news.length; // directamente ponemos el contador al límite para que el mismo se reinicie y haga los cambios en los paneles
-    }
-
-    this.actualize_news = false;
-  };
+    this.new1 = this.list_news[this.indexNew]
+  }
 
   constructor() {
     console.log("news.component");
   }
 
   ngOnInit(): void {
-
     setInterval(()=>{
-      this.state = !this.state;
       this.minusNews();
     },8000);
   }
 
   minusNews = () =>{
 
-    this.count_news++;
+    this.state = !this.state;
 
-    if(this.count_news > this.list_news.length){
-      this.count_news = 1;
-      (this.state?this.flow_news=[0,-1]:this.flow_news=[-1,0]);
+    if(this.indexNew >= this.list_news.length - 1){
+      this.indexNew = 0;
     }
 
-    (this.state?this.flow_news[1]+=2:this.flow_news[0]+=2);
+    (this.state?
+      this.new1 = this.list_news[this.indexNew]:
+      this.new2 = this.list_news[this.indexNew + 1]);
+
+    this.indexNew+=2;
   }
 }

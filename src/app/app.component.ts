@@ -14,14 +14,14 @@ export class AppComponent {
   list_news: Array<News> = [];
 
   constructor(private newsService: NewsService) {
-    console.log("app.component");
+
     this.newsService.news$.subscribe(data =>{
       this.list_news = data;
     });
   }
 
   ngOnInit(): void {
-    console.log("Empieza aqui");
+
     this.newsService.getNews(11);
     setInterval(()=>{
       this.newsService.getNews(30);
